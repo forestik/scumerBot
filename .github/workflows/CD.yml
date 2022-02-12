@@ -29,7 +29,7 @@ jobs:
     
     - name: Publish artifact
       run: |
-       echo ${{ secrets.SCUM_KEY }} > scumkey.pem \
+       echo "${{ secrets.SCUM_KEY }}" > scumkey.pem \
        chmod 400 scumkey.pem
        scp -i scumkey.pem target/*.jar ${{ secrets.EC2_USER }}@${{ secrets.EC2_IP }}:/opt/prod/scumbot.jar
        
