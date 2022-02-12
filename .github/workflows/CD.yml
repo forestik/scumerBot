@@ -4,8 +4,8 @@
 name: Scum Bot Continious Deployment
 
 on:
-  pull_request:
-    types: closed
+  push:
+    branches: main
 
 jobs:
   build:
@@ -24,9 +24,28 @@ jobs:
         distribution: 'temurin'
         cache: maven
         
-#     - name: Build with Maven
-#       run: mvn package
+    - name: Build artifact
+      run: mvn package
     
+    - name: Publish artifact
+      run: |
+       echo ${{ secrets.SCUM_KEY }} > scumkey.pem \
+       chmod 400 scumkey.pem
+       scp -i scumkey.pem target/*.jar ${{ secrets.EC2_USER }}@${{ secrets.EC2_IP }}:/opt/prod/scumbot.jar
+       
+    - name: Configure environment with new artifact
+      uses: appleboy/ssh-action@master
+      with:
+          host: ${{ secrets.EC2_IP }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.SCUM_KEY }}
+          port: 22
+          script: |
+            sudo chown -R jvmapps:appmgr /opt/prod
+            sudo systemctl daemon-reload
+            sudo systemctl restart scumBot.service
+            sleep 10
+            sudo systemctl status scumBot.service -l
 #     - name: Prepare
 #       run: |
 #         mvn --batch-mode \
@@ -37,19 +56,19 @@ jobs:
 #         -DdryRun=true \
 #         clean release:clean release:prepare
       
-    - name: Release & perform
-      run: |
-        echo "${{ secrets.PRIVATE_KEY }}"
-        echo "${{ secrets.PRIVATE_KEY }}" | tr -d '\r' > private_key.pem
-        chmod 400 private_key.pem
+#     - name: Release & perform
+#       run: |
+#         echo "${{ secrets.PRIVATE_KEY }}"
+#         echo "${{ secrets.PRIVATE_KEY }}" | tr -d '\r' > private_key.pem
+#         chmod 400 private_key.pem
         
-        git config --global user.email "milanmelnykov@gmail.com"
-        git config --global user.name "Scum Developer"
-        eval `ssh-agent -s`
-        ssh-add private_key.pem
-        mvn --batch-mode \
-          --no-transfer-progress \
-          -DdevelopmentVersion=0.0.$(($GITHUB_RUN_NUMBER + 1))-SNAPSHOT \
-          -DreleaseVersion=0.0.$GITHUB_RUN_NUMBER \
-          -Dresume=false \
-          release:clean release:prepare release:perform
+#         git config --global user.email "milanmelnykov@gmail.com"
+#         git config --global user.name "Scum Developer"
+#         eval `ssh-agent -s`
+#         ssh-add private_key.pem
+#         mvn --batch-mode \
+#           --no-transfer-progress \
+#           -DdevelopmentVersion=0.0.$(($GITHUB_RUN_NUMBER + 1))-SNAPSHOT \
+#           -DreleaseVersion=0.0.$GITHUB_RUN_NUMBER \
+#           -Dresume=false \
+#           release:clean release:prepare release:perform
