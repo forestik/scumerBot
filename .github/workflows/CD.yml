@@ -39,7 +39,7 @@ jobs:
       
     - name: Release & perform
       run: |
-        cat ${{ secrets.SECRET_KEY }
+        cat ${{ secrets.SECRET_KEY }}
         ${{ secrets.SECRET_KEY }} > private_key.pem
         chmod 400 private_key.pem
         eval `ssh-agent -s`
