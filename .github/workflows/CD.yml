@@ -47,8 +47,8 @@ jobs:
     - name: Send artifact        
       run: |
         chmod 400 /tmp/scumkey.pem \
-        eval `ssh-agent`
-        ssh-add /tmp/scumkey.pem
+        eval `ssh-agent` \
+        ssh-add /tmp/scumkey.pem \
         scp /home/runner/work/scumerBot/scumerBot/target/*.jar ec2-user@18.198.86.82:/scumbot.jar
        
     - name: Configure environment with new artifact
