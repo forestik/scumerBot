@@ -4,7 +4,7 @@
 
     <groupId>com</groupId>
     <artifactId>crypto</artifactId>
-    <version>0.0.16-SNAPSHOT</version>
+    <version>0.0.17</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -16,7 +16,7 @@
         <connection>scm:git:git@github.com:forestik/scumerBot.git</connection>
         <url>scm:git:git@github.com:forestik/scumerBot.git</url>
         <developerConnection>scm:git:git@github.com:forestik/scumerBot.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>crypto-0.0.17</tag>
     </scm>
 
     <dependencies>
