@@ -36,7 +36,7 @@ jobs:
        key: ${{ secrets.SCUM_KEY }}
        port: 22
        source: "/home/runner/work/scumerBot/scumerBot/target/*.jar"
-       target: ""
+       target: "~/"
         
 #       run: |
 #        echo "${{ secrets.SCUM_KEY }}" > scumkey.pem \
