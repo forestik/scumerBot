@@ -40,6 +40,7 @@ jobs:
     - name: Release & perform
       run: |
         ${{ secrets.SECRET_KEY }} > private_key.pem
+        chmod 400 private_key.pem
         eval `ssh-agent -s`
         ssh-add private_key.pem
         mvn --batch-mode \
