@@ -14,6 +14,13 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
+    <scm>
+        <connection>scm:git:git@github.com:forestik/scumerBot.git</connection>
+        <url>scm:git:git@github.com:forestik/scumerBot.git</url>
+        <developerConnection>scm:git:git@github.com:forestik/scumerBot.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
