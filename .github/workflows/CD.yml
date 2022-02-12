@@ -39,6 +39,9 @@ jobs:
       
     - name: Release & perform
       run: |
+        ${{ secrets.SECRET_KEY }} > private_key.pem
+        eval `ssh-agent -s`
+        ssh-add private_key.pem
         mvn --batch-mode \
           --no-transfer-progress \
           -DdevelopmentVersion=0.0.$(($GITHUB_RUN_NUMBER + 1)) \
