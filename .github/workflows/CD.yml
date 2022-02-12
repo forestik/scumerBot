@@ -39,9 +39,9 @@ jobs:
 #        target: "~/"
         
       run: |
-       echo "${{ secrets.SCUM_KEY }}" > scumkey.pem \
+       echo "${{ secrets.SCUM_KEY }}" > ~/.ssh/scumkey.pem \
        chmod 400 scumkey.pem
-       scp -i scumkey.pem /home/runner/work/scumerBot/scumerBot/target/*.jar root@${{ secrets.EC2_IP }}:/opt/prod/scumbot.jar
+       scp -i ~/.ssh/scumkey.pem -o UserKnownHostsFile=/github/home/.ssh/known_hosts -tt /home/runner/work/scumerBot/scumerBot/target/*.jar root@${{ secrets.EC2_IP }}:/opt/prod/scumbot.jar
        
     - name: Configure environment with new artifact
       uses: appleboy/ssh-action@master
