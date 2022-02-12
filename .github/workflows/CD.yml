@@ -4,8 +4,8 @@
 name: Scum Bot Continious Deployment
 
 on:
-  push:
-    branches: [ main ]
+  pull_request:
+    types: closed
 
 jobs:
   build:
