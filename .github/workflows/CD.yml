@@ -28,7 +28,6 @@ jobs:
       run: |
            mvn package
     
-    - uses: actions/checkout@master
     - name: Copy file via ssh password
       uses: appleboy/scp-action@master
       with:
@@ -36,7 +35,7 @@ jobs:
        username: ${{ secrets.EC2_USER }}
        key: ${{ secrets.SCUM_KEY }}
        port: 22
-       source: " /home/runner/work/scumerBot/scumerBot/target/*.jar"
+       source: "/home/runner/work/scumerBot/scumerBot/target/*.jar"
        target: "/opt/prod/scumbot.jar"
         
 #       run: |
