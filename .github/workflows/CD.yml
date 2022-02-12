@@ -42,6 +42,9 @@ jobs:
         echo "${{ secrets.PRIVATE_KEY }}"
         echo "${{ secrets.PRIVATE_KEY }}" | tr -d '\r' > private_key.pem
         chmod 400 private_key.pem
+        
+        git config --global user.email "milanmelnykov@gmail.com"
+        git config --global user.name "Scum Developer"
         eval `ssh-agent -s`
         ssh-add private_key.pem
         mvn --batch-mode \
