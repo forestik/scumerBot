@@ -31,7 +31,7 @@ jobs:
     - name: Copy file via ssh password
       uses: appleboy/scp-action@master
       with:
-       host: ${{ secrets.EC2_IP }}
+       host: 18.198.86.82
        username: root
        key: ${{ secrets.SCUM_KEY }}
        port: 22
