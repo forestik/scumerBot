@@ -49,7 +49,7 @@ jobs:
         ssh-add private_key.pem
         mvn --batch-mode \
           --no-transfer-progress \
-          -DdevelopmentVersion=0.0.$(($GITHUB_RUN_NUMBER + 1)) \
+          -DdevelopmentVersion=0.0.$(($GITHUB_RUN_NUMBER + 1))-SNAPSHOT \
           -DreleaseVersion=0.0.$GITHUB_RUN_NUMBER \
           -Dresume=false \
           release:clean release:prepare release:perform
