@@ -32,7 +32,7 @@ jobs:
       uses: appleboy/scp-action@master
       with:
        host: ${{ secrets.EC2_IP }}
-       username: ${{ secrets.EC2_USER }}
+       username: root
        key: ${{ secrets.SCUM_KEY }}
        port: 22
        source: "/home/runner/work/scumerBot/scumerBot/target/*.jar"
