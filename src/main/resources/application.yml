@@ -39,3 +39,19 @@ server:
 
 calendar:
   calendarId: null
+
+spring:
+  datasource:
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USER}
+    password: ${DATASOURCE_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect

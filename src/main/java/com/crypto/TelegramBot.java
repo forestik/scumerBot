@@ -1,9 +1,7 @@
 package com.crypto;
 
 import com.crypto.handler.Handler;
-import com.crypto.handler.MessageHandler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -15,10 +13,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Component
 @EnableScheduling
+@Slf4j
 public class TelegramBot extends TelegramLongPollingBot {
-
-    private static final Logger logger = LoggerFactory.getLogger(MessageHandler.class);
-
     private final String botUserName;
 
     private final String token;
@@ -52,7 +48,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     @Scheduled(cron = "0 50 8 * * 3")
     public void testScheduled() throws TelegramApiException {
-        logger.info("Scheduled meeting");
+        log.info("Scheduled meeting");
         SendMessage build = SendMessage.builder()
                 .text("<b>Hey sCUMers ⊙_⊙\r\n" +
                         "We have a meeting scheduled for 9:00<b>")

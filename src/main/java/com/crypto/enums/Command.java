@@ -3,15 +3,20 @@ package com.crypto.enums;
 import java.util.Arrays;
 
 public enum Command {
-    TEAM(0, "/team"),
-    TASKS(1, "/tasks"),
-    TOKENS_INFO(2, "/tokens"),
-    CALENDAR(3, "/calendar"),
-    EXCEL(3, "/excel");
+    TEAM("/team"),
+    TASKS("/tasks"),
+    TOKENS_INFO("/tokens"),
+    CALENDAR("/calendar"),
+    EXCEL("/excel"),
+    TAG_IN("/in"),
+    TAG_ALL("/everyone"),
+    RATING("/rating"),
+    ADD_RATING("/up"),
+    LOWER_RATING("/down");
 
     public String command;
 
-    Command(int i, String s) {
+    Command(String s) {
         this.command = s;
     }
 

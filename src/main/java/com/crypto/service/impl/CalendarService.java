@@ -20,7 +20,8 @@ public class CalendarService implements DefaultService {
 
     private final String calendarId;
 
-    public CalendarService(Calendar calendar, @Value("${calendar.calendarId}") String calendarId) {
+    public CalendarService(Calendar calendar,
+                           @Value("${calendar.calendarId}") String calendarId) {
         this.calendar = calendar;
         this.calendarId = calendarId;
     }

@@ -7,6 +7,6 @@ public class TokensLeftMessageDto extends MessageDto {
     }
 
     public void setMessage(String projectName, String userName, String tokensLeft) {
-        this.message = "<pre>" + projectName + " | " + userName + " | " + tokensLeft + "</pre>";
+        message = "<pre>" + projectName + " | " + userName + " | " + tokensLeft + "</pre>";
     }
 }
